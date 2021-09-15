@@ -5,7 +5,7 @@
  * Copyright (c) 2003-2020 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
- * Embedded viewing of a PDF galley.
+ * Embedded viewing of a EPUB galley.
  *}
 <!DOCTYPE html>
 <html lang="{$currentLocale|replace:"_":"-"}" xml:lang="{$currentLocale|replace:"_":"-"}">
@@ -18,6 +18,7 @@
 	{load_stylesheet context="frontend" stylesheets=$stylesheets}
 	{load_script context="frontend" scripts=$scripts}
 </head>
+
 <body class="pkp_page_{$requestedPage|escape} pkp_op_{$requestedOp|escape}">
 
 	{* Header wrapper *}
@@ -36,7 +37,7 @@
 			{$title|escape}
 		</a>
 
-		<a href="{$pdfUrl}" class="download" download>
+		<a href="{$epubUrl}" class="download" download>
 			<span class="label">
 				{translate key="common.download"}
 			</span>
@@ -48,11 +49,10 @@
 	</header>
 
 	<script type="text/javascript">
-		// Creating iframe's src in JS instead of Smarty so that EZProxy-using sites can find our domain in $pdfUrl and do their rewrites on it.
 		$(document).ready(function() {ldelim}
-			var urlBase = "{$pluginUrl}/pdf.js/web/viewer.html?file=";
-			var pdfUrl = {$pdfUrl|json_encode};
-			$("#pdfCanvasContainer > iframe").attr("src", urlBase + encodeURIComponent(pdfUrl));
+			var urlBase = "{$pluginUrl}/epubjs-reader/reader/index.html?bookPath=";
+			var epubUrl = {$epubUrl|json_encode};
+			$("#pdfCanvasContainer > iframe").attr("src", urlBase + encodeURIComponent(epubUrl) + ".epub");
 		{rdelim});
 	</script>
 
