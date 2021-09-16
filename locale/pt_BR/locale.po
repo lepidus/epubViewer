@@ -15,10 +15,10 @@ msgstr ""
 "X-Generator: Weblate 3.9.1\n"
 
 msgid "plugins.generic.epubViewer.name"
-msgstr "EPUB Visualizador de EPUB"
+msgstr "Visualizador de EPUBs com EPUB.JS"
 
 msgid "plugins.generic.epubViewer.description"
 msgstr ""
-"Este plugin usa o <a href=\"http://mozilla.github.io/pdf.js\">PDF.JS "
-"Visualizador de PDF</a> para embutir PDFs nas páginas de visualização dos "
+"Este plugin usa o <a href=\"https://github.com/futurepress/epub.js/\">EPUB.JS "
+"Visualizador de EPUBs</a> para embutir EPUBs nas páginas de visualização dos "
 "artigos."

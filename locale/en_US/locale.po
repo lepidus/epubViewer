@@ -12,7 +12,7 @@ msgstr ""
 "Language: \n"
 
 msgid "plugins.generic.epubViewer.name"
-msgstr "PDF.JS PDF Viewer"
+msgstr "EPUB.JS ePUB Viewer"
 
 msgid "plugins.generic.epubViewer.description"
-msgstr "This plugin uses the <a href=\"http://mozilla.github.io/pdf.js\">pdf.js PDF viewer</a> to embed PDFs on the article and issue galley view pages."
+msgstr "This plugin uses the <a href=\"https://github.com/futurepress/epub.js/\">epub.js EPUB viewer</a> to embed ePUBs on the article and issue galley view pages."
