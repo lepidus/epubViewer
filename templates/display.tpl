@@ -20,33 +20,62 @@
 </head>
 
 <body class="pkp_page_{$requestedPage|escape} pkp_op_{$requestedOp|escape}">
+	{$application = Application::get()}
 
-	{* Header wrapper *}
-	<header class="header_view">
-		<a href="{$parentUrl}" class="return">
-			<span class="pkp_screen_reader">
-				{if $parent instanceOf Issue}
-					{translate key="issue.return"}
-				{else}
-					{translate key="article.return"}
-				{/if}
+	{if $application->getName() == 'omp'}
+		{* Header wrapper *}
+		<header class="header_viewable_file">
+
+			{capture assign="submissionUrl"}{url op="book" path=$publishedSubmission->getBestId()}{/capture}
+
+			<a href="{$submissionUrl}" class="return">
+				<span class="pkp_screen_reader">
+					{translate key="catalog.viewableFile.return" monographTitle=$publishedSubmission->getLocalizedTitle()|escape}
+				</span>
+			</a>
+
+			<span class="title">
+				{$submissionFile->getLocalizedData('name')|escape}
 			</span>
-		</a>
 
-		<a href="{$parentUrl}" class="title">
-			{$title|escape}
-		</a>
+			<a href="{$downloadUrl|escape}" class="download" download>
+				<span class="label">
+					{translate key="common.download"}
+				</span>
+				<span class="pkp_screen_reader">
+					{translate key="common.downloadPdf"}
+				</span>
+			</a>
 
-		<a href="{$epubUrl}" class="download" download>
-			<span class="label">
-				{translate key="common.download"}
-			</span>
-			<span class="pkp_screen_reader">
-				{translate key="common.downloadPdf"}
-			</span>
-		</a>
+		</header>
+	{else}
+		{* Header wrapper *}
+		<header class="header_view">
+			<a href="{$parentUrl}" class="return">
+				<span class="pkp_screen_reader">
+					{if $parent instanceOf Issue}
+						{translate key="issue.return"}
+					{else}
+						{translate key="article.return"}
+					{/if}
+				</span>
+			</a>
 
-	</header>
+			<a href="{$parentUrl}" class="title">
+				{$title|escape}
+			</a>
+
+			<a href="{$epubUrl}" class="download" download>
+				<span class="label">
+					{translate key="common.download"}
+				</span>
+				<span class="pkp_screen_reader">
+					{translate key="common.downloadPdf"}
+				</span>
+			</a>
+
+		</header>
+	{/if}
 
 	<script src="{$pluginUrl}/epubjs-reader/reader/js/epub.min.js"></script>
 
@@ -54,7 +83,6 @@
 		$(document).ready(function() {ldelim} 
 			var urlBase = "{$pluginUrl}/epubjs-reader/reader/index.html?bookPath=";
 			
-			{$application = Application::get()}
 			{if $application->getName() === "omp"}
 				OMPEpubObject = new ePub({$downloadUrl|json_encode});
 				OMPEpubPath = OMPEpubObject.url.Path.path;
