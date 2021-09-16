@@ -48,11 +48,21 @@
 
 	</header>
 
+	<script src="{$pluginUrl}/epubjs-reader/reader/js/epub.min.js"></script>
+
 	<script type="text/javascript">
-		$(document).ready(function() {ldelim}
+		$(document).ready(function() {ldelim} 
 			var urlBase = "{$pluginUrl}/epubjs-reader/reader/index.html?bookPath=";
-			var epubUrl = {$epubUrl|json_encode};
-			$("#pdfCanvasContainer > iframe").attr("src", urlBase + encodeURIComponent(epubUrl) + ".epub");
+			
+			{$application = Application::get()}
+			{if $application->getName() === "omp"}
+				OMPEpubObject = new ePub({$downloadUrl|json_encode});
+				OMPEpubPath = OMPEpubObject.url.Path.path;
+				$("#pdfCanvasContainer > iframe").attr("src", urlBase + encodeURIComponent(OMPEpubPath) + ".epub");
+			{else} 
+				var epubUrl = {$epubUrl|json_encode};
+				$("#pdfCanvasContainer > iframe").attr("src", urlBase + encodeURIComponent(epubUrl) + ".epub");
+			{/if}
 		{rdelim});
 	</script>
 

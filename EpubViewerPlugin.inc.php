@@ -153,7 +153,7 @@ class EpubViewerPlugin extends GenericPlugin {
 
 		$request = Application::get()->getRequest();
 		$mimetype = $submissionFile->getData('mimetype');
-		if ($mimetype == 'application/pdf' && $request->getUserVar('inline')) {
+		if ($mimetype == 'application/epub+zip' && $request->getUserVar('inline')) {
 			$inline = true;
 		}
 		
