@@ -1,8 +1,7 @@
 {**
  * plugins/generic/epubViewer/templates/submissionGalley.tpl
  *
- * Copyright (c) 2014-2020 Simon Fraser University
- * Copyright (c) 2003-2020 John Willinsky
+ * Copyright (c) 2010-2021 Lepidus Tecnologia
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * Embedded viewing of a EPUB galley.

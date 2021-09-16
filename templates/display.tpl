@@ -1,8 +1,7 @@
 {**
  * plugins/generic/epubViewer/templates/display.tpl
  *
- * Copyright (c) 2014-2020 Simon Fraser University
- * Copyright (c) 2003-2020 John Willinsky
+ * Copyright (c) 2010-2021 Lepidus Tecnologia
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * Embedded viewing of a EPUB galley.
@@ -86,15 +85,15 @@
 			{if $application->getName() === "omp"}
 				OMPEpubObject = new ePub({$downloadUrl|json_encode});
 				OMPEpubPath = OMPEpubObject.url.Path.path;
-				$("#pdfCanvasContainer > iframe").attr("src", urlBase + encodeURIComponent(OMPEpubPath) + ".epub");
+				$("#epubCanvasContainer > iframe").attr("src", urlBase + encodeURIComponent(OMPEpubPath) + ".epub");
 			{else} 
 				var epubUrl = {$epubUrl|json_encode};
-				$("#pdfCanvasContainer > iframe").attr("src", urlBase + encodeURIComponent(epubUrl) + ".epub");
+				$("#epubCanvasContainer > iframe").attr("src", urlBase + encodeURIComponent(epubUrl) + ".epub");
 			{/if}
 		{rdelim});
 	</script>
 
-	<div id="pdfCanvasContainer" class="galley_view{if !$isLatestPublication} galley_view_with_notice{/if}">
+	<div id="epubCanvasContainer" class="galley_view{if !$isLatestPublication} galley_view_with_notice{/if}">
 		{if !$isLatestPublication}
 			<div class="galley_view_notice">
 				<div class="galley_view_notice_message" role="alert">

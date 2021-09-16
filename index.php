@@ -7,12 +7,11 @@
 /**
  * @file plugins/viewableFile/epubViewer/index.php
  *
- * Copyright (c) 2013-2020 Simon Fraser University
- * Copyright (c) 2003-2020 John Willinsky
+ * Copyright (c) 2010-2021 Lepidus Tecnologia
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @ingroup plugins_viewableFile_epubViewer
- * @brief Wrapper for pdf.js-based viewer.
+ * @brief Wrapper for epub.js-based viewer.
  *
  */
 
