@@ -11,7 +11,14 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset={$defaultCharset|escape}" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>{translate key="article.pageTitle" title=$title|escape}</title>
+	{$application = Application::get()}
+	<title>
+		{if $application->getName() === 'omp'}
+			{translate key="catalog.viewableFile.title" type=$publicationFormat->getLocalizedName()|escape title=$submissionFile->getLocalizedData('name')|escape}
+		{else}
+			{translate key="article.pageTitle" title=$title|escape}
+		{/if} 
+	</title>
 
 	{load_header context="frontend" headers=$headers}
 	{load_stylesheet context="frontend" stylesheets=$stylesheets}
@@ -19,7 +26,6 @@
 </head>
 
 <body class="pkp_page_{$requestedPage|escape} pkp_op_{$requestedOp|escape}">
-	{$application = Application::get()}
 
 	{if $application->getName() == 'omp'}
 		{* Header wrapper *}
