@@ -82,16 +82,27 @@
 		</header>
 	{/if}
 
-	<script src="{$pluginUrl}/epubjs-reader/reader/js/epub.min.js"></script>
-
 	<script type="text/javascript">
 		$(document).ready(function() {ldelim} 
-			var urlBase = "{$pluginUrl}/epubjs-reader/reader/index.html?bookPath=";
+			const Jo = window['bibi:jo'];
+			var urlBase = "{$pluginUrl}/bibi/?book=";
+
+			OMPEpubObject = new ePub({$downloadUrl|json_encode});
+			OMPEpubPath = OMPEpubObject.url.Path.path;
+			const OneMoreBibi = new Jo.Bibi({
+				'bibi-href': urlBase + encodeURIComponent(OMPEpubPath) + ".epub",
+				'bibi-style': 'width: 100%; height: 480px;',
+				'bibi-view': 'paged',
+				'bibi-view-unchangeable': 'yes',
+				'bibi-autostart': 'yes',
+				'bibi-receive': ['bibi:flipped', 'bibi:got-to-the-beginning', 'bibi:got-to-the-end']
+			});
+			
+			$("body").append(OneMoreBibi.Frame);
 			
 			{if $application->getName() === "omp"}
 				OMPEpubObject = new ePub({$downloadUrl|json_encode});
 				OMPEpubPath = OMPEpubObject.url.Path.path;
-				$("#epubCanvasContainer > iframe").attr("src", urlBase + encodeURIComponent(OMPEpubPath) + ".epub");
 			{else} 
 				var epubUrl = {$epubUrl|json_encode};
 				$("#epubCanvasContainer > iframe").attr("src", urlBase + encodeURIComponent(epubUrl) + ".epub");
@@ -99,6 +110,7 @@
 		{rdelim});
 	</script>
 
+	<link rel="stylesheet" href="{$pluginUrl}/bibi/resources/styles/bibi.css" />
 	<div id="epubCanvasContainer" class="galley_view{if !$isLatestPublication} galley_view_with_notice{/if}">
 		{if !$isLatestPublication}
 			<div class="galley_view_notice">
@@ -107,7 +119,7 @@
 				</div>
 			</div>
 		{/if}
-		<iframe src="" width="100%" height="100%" style="min-height: 500px;" title="{$galleyTitle}" allowfullscreen webkitallowfullscreen></iframe>
+		<script src="{$pluginUrl}/bibi/and/jo.js"></script>
 	</div>
 	{call_hook name="Templates::Common::Footer::PageFooter"}
 </body>
