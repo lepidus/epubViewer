@@ -87,10 +87,15 @@
 			const Jo = window['bibi:jo'];
 			var urlBase = "{$pluginUrl}/bibi/?book=";
 
-			OMPEpubObject = new ePub({$downloadUrl|json_encode});
-			OMPEpubPath = OMPEpubObject.url.Path.path;
+			var epubUrl;
+			{if $application->getName() === "omp"}
+				epubUrl = {$downloadUrl|json_encode} + ".epub";
+			{else} 
+				epubUrl = {$epubUrl|json_encode} + ".epub";
+			{/if}
+
 			const OneMoreBibi = new Jo.Bibi({
-				'bibi-href': urlBase + encodeURIComponent(OMPEpubPath) + ".epub",
+				'bibi-href': urlBase + encodeURIComponent(epubUrl),
 				'bibi-style': 'width: 100%; height: 480px;',
 				'bibi-view': 'paged',
 				'bibi-view-unchangeable': 'yes',
@@ -100,13 +105,6 @@
 			
 			$("body").append(OneMoreBibi.Frame);
 			
-			{if $application->getName() === "omp"}
-				OMPEpubObject = new ePub({$downloadUrl|json_encode});
-				OMPEpubPath = OMPEpubObject.url.Path.path;
-			{else} 
-				var epubUrl = {$epubUrl|json_encode};
-				$("#epubCanvasContainer > iframe").attr("src", urlBase + encodeURIComponent(epubUrl) + ".epub");
-			{/if}
 		{rdelim});
 	</script>
 
