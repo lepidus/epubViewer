@@ -11,7 +11,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @ingroup plugins_viewableFile_epubViewer
- * @brief Wrapper for epub.js-based viewer.
+ * @brief Wrapper for bibi-based viewer.
  *
  */
 
