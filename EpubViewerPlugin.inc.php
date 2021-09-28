@@ -3,8 +3,7 @@
 /**
  * @file plugins/generic/epubViewer/EpubViewerPlugin.inc.php
  *
- * Copyright (c) 2013-2020 Simon Fraser University
- * Copyright (c) 2003-2020 John Willinsky
+ * Copyright (c) 2010-2021 Lepidus Tecnologia
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class EpubViewerPlugin
@@ -26,6 +25,8 @@ class EpubViewerPlugin extends GenericPlugin {
 				// For OJS
 				HookRegistry::register('ArticleHandler::view::galley', array($this, 'submissionCallback'), HOOK_SEQUENCE_LAST);
 				HookRegistry::register('IssueHandler::view::galley', array($this, 'issueCallback'), HOOK_SEQUENCE_LAST);
+				HookRegistry::register('CatalogBookHandler::view', array($this, 'viewCallback'), HOOK_SEQUENCE_LATE);
+				HookRegistry::register('CatalogBookHandler::download', array($this, 'downloadCallback'), HOOK_SEQUENCE_LATE);
 				AppLocale::requireComponents(LOCALE_COMPONENT_APP_COMMON);
 			}
 			return true;
@@ -85,7 +86,7 @@ class EpubViewerPlugin extends GenericPlugin {
 		}
 
 		$submissionFile = $galley->getFile();
-		if ($submissionFile->getData('mimetype') === 'application/pdf') {
+		if ($submissionFile->getData('mimetype') === 'application/epub+zip') {
 			$galleyPublication = null;
 			foreach ($submission->getData('publications') as $publication) {
 				if ($publication->getId() === $galley->getData('publicationId')) {
@@ -114,6 +115,50 @@ class EpubViewerPlugin extends GenericPlugin {
 		return false;
 	}
 
+	function viewCallback($hookName, $args) {
+		$submission =& $args[1];
+		$publicationFormat =& $args[2];
+		$submissionFile =& $args[3];
+
+		if ($submissionFile->getData('mimetype') == 'application/epub+zip') {
+			foreach ($submission->getData('publications') as $publication) {
+				if ($publication->getId() === $publicationFormat->getData('publicationId')) {
+					$filePublication = $publication;
+					break;
+				}
+			}
+			$request = Application::get()->getRequest();
+			$router = $request->getRouter();
+			$dispatcher = $request->getDispatcher();
+			$templateMgr = TemplateManager::getManager($request);
+			$templateMgr->assign(array(
+				'pluginUrl' => $request->getBaseUrl() . '/' . $this->getPluginPath(),
+				'isLatestPublication' => $submission->getData('currentPublicationId') === $publicationFormat->getData('publicationId'),
+				'filePublication' => $filePublication,
+			));
+
+			$templateMgr->display($this->getTemplateResource('display.tpl'));
+			return true;
+		}
+
+		return false;
+	}
+
+	function downloadCallback($hookName, $params) {
+		$submission =& $params[1];
+		$publicationFormat =& $params[2];
+		$submissionFile =& $params[3];
+		$inline =& $params[4];
+
+		$request = Application::get()->getRequest();
+		$mimetype = $submissionFile->getData('mimetype');
+		if ($mimetype == 'application/epub+zip' && $request->getUserVar('inline')) {
+			$inline = true;
+		}
+		
+		return false;
+	}
+
 	/**
 	 * Callback that renders the issue galley.
 	 * @param $hookName string
@@ -126,7 +171,7 @@ class EpubViewerPlugin extends GenericPlugin {
 		$galley =& $args[2];
 
 		$templateMgr = TemplateManager::getManager($request);
-		if ($galley && $galley->getFileType() == 'application/pdf') {
+		if ($galley && $galley->getFileType() == 'application/epub+zip') {
 			$application = Application::get();
 			$templateMgr->assign(array(
 				'displayTemplateResource' => $this->getTemplateResource('display.tpl'),
