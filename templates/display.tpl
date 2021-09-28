@@ -104,6 +104,7 @@
 			});
 			
 			$("body").append(OneMoreBibi.Frame);
+			$(".bibi-frame").css("height","97vh");
 			
 		{rdelim});
 	</script>
