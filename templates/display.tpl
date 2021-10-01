@@ -85,7 +85,7 @@
 	<script type="text/javascript">
 		$(document).ready(function() {ldelim} 
 			const Jo = window['bibi:jo'];
-			var urlBase = "{$pluginUrl}/bibi/?book=";
+			var urlBase = "{$pluginUrl}/bibi/index.html?book=";
 
 			var epubUrl;
 			{if $application->getName() === "omp"}
