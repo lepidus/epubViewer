@@ -20,9 +20,6 @@ class EpubViewerPlugin extends GenericPlugin {
 	function register($category, $path, $mainContextId = null) {
 		if (parent::register($category, $path, $mainContextId)) {
 			if ($this->getEnabled($mainContextId)) {
-				// For OPS
-				HookRegistry::register('PreprintHandler::view::galley', array($this, 'submissionCallback'), HOOK_SEQUENCE_LAST);
-				// For OJS
 				HookRegistry::register('ArticleHandler::view::galley', array($this, 'submissionCallback'), HOOK_SEQUENCE_LAST);
 				HookRegistry::register('IssueHandler::view::galley', array($this, 'issueCallback'), HOOK_SEQUENCE_LAST);
 				HookRegistry::register('CatalogBookHandler::view', array($this, 'viewCallback'), HOOK_SEQUENCE_LATE);
@@ -71,12 +68,6 @@ class EpubViewerPlugin extends GenericPlugin {
 				$galley =& $args[2];
 				$submission =& $args[3];
 				$submissionNoun = 'article';
-				break;
-			case 'ops':
-				$galley =& $args[1];
-				$submission =& $args[2];
-				$submissionNoun = 'preprint';
-				$issue = null;
 				break;
 			default: throw new Exception('Unknown application!');
 		}
