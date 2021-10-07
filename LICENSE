@@ -385,7 +385,7 @@ that material) supplement the terms of this License with terms:
     any liability that these contractual assumptions directly impose on
     those licensors and authors.
 
-  This plugin uses Bibi EPUB Reader to display epubs in OJS and OMP applications, for more information about Bibi license, view [Bibi license page](https://github.com/lepidus/epubViewer/blob/main/bibi/LICENSE).
+  This plugin uses Bibi EPUB Reader to display epubs in OJS and OMP applications, for more information about Bibi license, see Bibi license page: <https://github.com/lepidus/epubViewer/blob/main/bibi/LICENSE>.  
   All other non-permissive additional terms are considered "further
 restrictions" within the meaning of section 10.  If the Program as you
 received it, or any part of it, contains a notice stating that it is
