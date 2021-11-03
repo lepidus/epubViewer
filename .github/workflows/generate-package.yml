@@ -29,11 +29,10 @@ jobs:
         shell: bash
       - name: Build and make package with npm
         run: | 
-          cd libs/bibi/
+          cd libs/bibi
           npm run build 
           npm run make:package
           cd ../../
-        shell: bash
       - name: Create the tar.gz package
         run: |
           mkdir $PLUGIN_NAME
