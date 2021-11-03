@@ -85,7 +85,7 @@
 	<script type="text/javascript">
 		$(document).ready(function() {ldelim} 
 			const Jo = window['bibi:jo'];
-			var urlBase = "{$pluginUrl}/bibi/index.html?book=";
+			var urlBase = "{$pluginUrl}/libs/bibi/__dist/bibi/index.html?book=";
 
 			var epubUrl;
 			{if $application->getName() === "omp"}
@@ -118,7 +118,7 @@
 				</div>
 			</div>
 		{/if}
-		<script src="{$pluginUrl}/bibi/and/jo.js"></script>
+		<script src="{$pluginUrl}/libs/bibi/__dist/bibi/and/jo.js"></script>
 	</div>
 	{call_hook name="Templates::Common::Footer::PageFooter"}
 </body>
