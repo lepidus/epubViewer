@@ -28,8 +28,8 @@ jobs:
           if [ $date_version != $current_date ]; then exit 1; fi
         shell: bash
       - name: Build and make package with npm
+        working-directory: ./libs/bibi
         run: | 
-          cd libs/bibi
           npm run build 
           npm run make:package
           cd ../../
