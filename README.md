@@ -4,7 +4,7 @@
 A plugin to viewing embedded EPUBs in [Open Journal Systems](https://github.com/pkp/ojs) and [Open Monograph Press](https://github.com/pkp/omp) using [Bibi Epub Reader](https://github.com/satorumurmur/bibi) library.
 
 ## License
-This plugin is licensed under the GNU General Public License v3. See the file
+This plugin is licensed under the GNU General Public License v3 and Bibi Epub Reader license. See those files
 COPYING for the complete terms of this license.
 
 ## Install
