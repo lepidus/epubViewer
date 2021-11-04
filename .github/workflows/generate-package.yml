@@ -32,7 +32,6 @@ jobs:
         run: | 
           npm run build 
           npm run make:package
-          cd ../../
       - name: Create the tar.gz package
         run: |
           mkdir $PLUGIN_NAME
