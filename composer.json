@@ -1,0 +1,18 @@
+{
+    "repositories": [{
+        "url": "https://github.com/satorumurmur/bibi",
+        "type": "package",
+        "package": {
+            "name": "bibi/bibi",
+            "version": "v1.2.0",
+            "dist": {
+                "url": "https://github.com/satorumurmur/bibi/releases/download/v1.2.0/Bibi-v1.2.0.zip",
+                "type": "zip"
+            }
+        }
+    }],
+
+    "require": {
+        "bibi/bibi": "v1.2.0"
+    }
+}

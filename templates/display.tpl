@@ -85,7 +85,7 @@
 	<script type="text/javascript">
 		$(document).ready(function() {ldelim} 
 			const Jo = window['bibi:jo'];
-			var urlBase = "{$pluginUrl}/libs/bibi/__dist/bibi/index.html?book=";
+			var urlBase = "{$pluginUrl}/vendor/bibi/bibi/bibi/index.html?book=";
 
 			var epubUrl;
 			{if $application->getName() === "omp"}
@@ -109,7 +109,7 @@
 		{rdelim});
 	</script>
 
-	<link rel="stylesheet" href="{$pluginUrl}/bibi/resources/styles/bibi.css" />
+	<link rel="stylesheet" href="{$pluginUrl}/vendor/bibi/bibi/bibi/resources/styles/bibi.css" />
 	<div id="epubCanvasContainer" class="galley_view{if !$isLatestPublication} galley_view_with_notice{/if}">
 		{if !$isLatestPublication}
 			<div class="galley_view_notice">
@@ -118,7 +118,7 @@
 				</div>
 			</div>
 		{/if}
-		<script src="{$pluginUrl}/libs/bibi/__dist/bibi/and/jo.js"></script>
+		<script src="{$pluginUrl}/vendor/bibi/bibi/bibi/and/jo.js"></script>
 	</div>
 	{call_hook name="Templates::Common::Footer::PageFooter"}
 </body>
