@@ -10,8 +10,12 @@
  *
  * @brief This plugin enables embedding of ePUB viewer for epub display
  */
+namespace APP\plugins\generic\epubViewer;
 
-import('lib.pkp.classes.plugins.GenericPlugin');
+use PKP\plugins\Hook;
+use PKP\plugins\GenericPlugin;
+use APP\core\Application;
+use APP\template\TemplateManager;
 
 class EpubViewerPlugin extends GenericPlugin {
 	/**
@@ -20,11 +24,10 @@ class EpubViewerPlugin extends GenericPlugin {
 	function register($category, $path, $mainContextId = null) {
 		if (parent::register($category, $path, $mainContextId)) {
 			if ($this->getEnabled($mainContextId)) {
-				HookRegistry::register('ArticleHandler::view::galley', array($this, 'submissionCallback'), HOOK_SEQUENCE_LAST);
-				HookRegistry::register('IssueHandler::view::galley', array($this, 'issueCallback'), HOOK_SEQUENCE_LAST);
-				HookRegistry::register('CatalogBookHandler::view', array($this, 'viewCallback'), HOOK_SEQUENCE_LATE);
-				HookRegistry::register('CatalogBookHandler::download', array($this, 'downloadCallback'), HOOK_SEQUENCE_LATE);
-				AppLocale::requireComponents(LOCALE_COMPONENT_APP_COMMON);
+				Hook::add('ArticleHandler::view::galley', array($this, 'submissionCallback'), HOOK_SEQUENCE_LAST);
+				Hook::add('IssueHandler::view::galley', array($this, 'issueCallback'), HOOK_SEQUENCE_LAST);
+				Hook::add('CatalogBookHandler::view', [$this, 'viewCallback'], Hook::SEQUENCE_LATE);
+                Hook::add('CatalogBookHandler::download', [$this, 'downloadCallback'], Hook::SEQUENCE_LATE);
 			}
 			return true;
 		}
