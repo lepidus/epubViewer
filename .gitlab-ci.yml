@@ -1,5 +1,5 @@
 variables:
-    PLUGIN_NAME: 'epubViewer'
+  PLUGIN_NAME: 'epubViewer'
 
 include:
   - project: 'documentacao-e-tarefas/modelosparaintegracaocontinua'
