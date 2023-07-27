@@ -17,4 +17,3 @@
 
 require_once('EpubViewerPlugin.inc.php');
 return new EpubViewerPlugin();
-

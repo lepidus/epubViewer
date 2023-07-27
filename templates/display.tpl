@@ -91,7 +91,7 @@
 			{if $application->getName() === "omp"}
 				epubUrl = {$downloadUrl|json_encode} + ".epub";
 			{else} 
-				epubUrl = {$epubUrl|json_encode} + ".epub";
+				epubUrl = {$epubUrl|json_encode} + "/file.epub";
 			{/if}
 
 			const OneMoreBibi = new Jo.Bibi({

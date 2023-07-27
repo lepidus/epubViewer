@@ -15,6 +15,7 @@ Includes Bibi Epub Reader which has an [MIT open source license and other depend
 
 ## Compatibility
 This plugin is compatible with:
+* OJS and OMP 3.4.0.x
 * OJS and OMP 3.3.0.x
 * OJS 3.2.1.x
 ___
