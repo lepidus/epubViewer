@@ -1,7 +1,7 @@
 {**
  * plugins/generic/epubViewer/templates/display.tpl
  *
- * Copyright (c) 2010-2021 Lepidus Tecnologia
+ * Copyright (c) 2010-2023 Lepidus Tecnologia
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * Embedded viewing of a EPUB galley.

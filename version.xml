@@ -4,7 +4,7 @@
 <!--
   * version.xml
   *
-  * Copyright (c) 2010-2021 Lepidus Tecnologia
+  * Copyright (c) 2010-2023 Lepidus Tecnologia
   * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
   *
   * Plugin version information.
@@ -12,8 +12,8 @@
 <version>
 	<application>epubViewer</application>
 	<type>plugins.generic</type>
-	<release>1.0.5.0</release>
-	<date>2021-11-08</date>
+	<release>1.0.6.0</release>
+	<date>2023-10-31</date>
 	<lazy-load>1</lazy-load>
 	<class>EpubViewerPlugin</class>
 </version>
