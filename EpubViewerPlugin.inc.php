@@ -66,13 +66,13 @@ class EpubViewerPlugin extends GenericPlugin
      */
     public function submissionCallback($hookName, $args)
     {
-        $request = & $args[0];
+        $request = &$args[0];
         $application = Application::get();
         switch ($application->getName()) {
             case 'ojs2':
-                $issue = & $args[1];
-                $galley = & $args[2];
-                $submission = & $args[3];
+                $issue = &$args[1];
+                $galley = &$args[2];
+                $submission = &$args[3];
                 $submissionNoun = 'article';
                 break;
             default: throw new Exception('Unknown application!');
@@ -114,9 +114,9 @@ class EpubViewerPlugin extends GenericPlugin
 
     public function viewCallback($hookName, $args)
     {
-        $submission = & $args[1];
-        $publicationFormat = & $args[2];
-        $submissionFile = & $args[3];
+        $submission = &$args[1];
+        $publicationFormat = &$args[2];
+        $submissionFile = &$args[3];
 
         if ($submissionFile->getData('mimetype') == 'application/epub+zip') {
             foreach ($submission->getData('publications') as $publication) {
@@ -144,10 +144,10 @@ class EpubViewerPlugin extends GenericPlugin
 
     public function downloadCallback($hookName, $params)
     {
-        $submission = & $params[1];
-        $publicationFormat = & $params[2];
-        $submissionFile = & $params[3];
-        $inline = & $params[4];
+        $submission = &$params[1];
+        $publicationFormat = &$params[2];
+        $submissionFile = &$params[3];
+        $inline = &$params[4];
 
         $request = Application::get()->getRequest();
         $mimetype = $submissionFile->getData('mimetype');
@@ -166,9 +166,9 @@ class EpubViewerPlugin extends GenericPlugin
      */
     public function issueCallback($hookName, $args)
     {
-        $request = & $args[0];
-        $issue = & $args[1];
-        $galley = & $args[2];
+        $request = &$args[0];
+        $issue = &$args[1];
+        $galley = &$args[2];
 
         $templateMgr = TemplateManager::getManager($request);
         if ($galley && $galley->getFileType() == 'application/epub+zip') {
