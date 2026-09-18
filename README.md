@@ -1,5 +1,11 @@
 # Bibi Epub Viewer Plugin
 
+> [!WARNING]
+> **This plugin has been discontinued and is no longer maintained.**
+> The [Bibi Epub Reader](https://github.com/satorumurmur/bibi) library, on which this plugin is entirely based, has been abandoned by its developers, so there is no longer any reason to keep the plugin going.
+>
+> As an alternative, there is [epubJsViewer](https://github.com/OJSBR/epubJsViewer), a plugin that uses the [epub.js](https://github.com/futurepress/epub.js) library and supports OJS, OPS and OMP 3.5.
+
 ## About
 A plugin to viewing embedded EPUBs in [Open Journal Systems](https://github.com/pkp/ojs) and [Open Monograph Press](https://github.com/pkp/omp) using [Bibi Epub Reader](https://github.com/satorumurmur/bibi).
 
